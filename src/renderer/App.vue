@@ -4,11 +4,11 @@
 </template>
 
 <script>
-  export default {
-    name: 'myenv'
-  }
+export default {
+  name: 'myenv'
+}
 </script>
 
 <style>
-  /* CSS */
+/* CSS */
 </style>
