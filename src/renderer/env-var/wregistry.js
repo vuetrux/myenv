@@ -156,7 +156,7 @@ class Path extends Variables {
     setPath(path_, cb) {
         let path = path_ || this.path;
         let newPathStr = path.join(';');
-        this.regKeyRef.set(this.name, Registry.REG_SZ, newPathStr, err => cb(err))
+        this.set({name: this.name, value: newPathStr}, err => cb(err))
     }
 }
 
