@@ -3,8 +3,10 @@
  * despues de tod ambas tienen la misma estructura, lo unico q las diferencia es el lugar de regedt
  * en donde se almacenan
  * */
+import OpenDialog from '../../OpenDialog.vue'
 
 export default {
+    components: {OpenDialog},
     mounted() {
         this.Environment.getVariables((err, Variables) => this.Variables = Variables);
     },
@@ -13,7 +15,7 @@ export default {
             Variables: [],
             varName: '',
             varValue: '',
-            editing: {id: '', name: '', value: ''}
+            editing: {id: -1, name: '', value: ''}
         }
     },
     methods: {
@@ -22,6 +24,7 @@ export default {
                 name: varName || this.varName,
                 value: varValue || this.varValue
             };
+            if (!newVarData.name || !newVarData.value) return;
             return new Promise((res, rej) => {
                 this.Environment.set(newVarData, (err, stdout, stderr) => {
                     if (stderr || err) {
@@ -31,6 +34,8 @@ export default {
                     }
                     console.log(stdout);
                     updateList && this.Variables.push(newVarData);
+                    this.varValue = '';
+                    this.varName = '';
                     res()
                 })
             });
@@ -52,13 +57,23 @@ export default {
                 })
             });
         },
-        showEditor(varName, varValue) {
-            this.editing.id = varName;
-            this.editing.name = varName;
-            this.editing.value = varValue;
+        selectedFolderByAdding(folder) {
+            this.varValue = folder;
+            if(this.varName) this.setVar()
+        },
+        selectedFolderByEditing(folder){
+            let oldVar = this.Variables[this.editing.id];
+            this.editing.value = folder;
+            this.editVar(oldVar.name, oldVar.value);
+        },
+        showEditor({name, value}, index) {
+            console.log(name, value, index);
+            this.editing.id = index;
+            this.editing.name = name;
+            this.editing.value = value;
         },
         cancelEdit() {
-            this.editing.id = '';
+            this.editing.id = -1;
             this.editing.name = '';
             this.editing.value = '';
         },

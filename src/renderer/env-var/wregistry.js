@@ -42,7 +42,6 @@ class Variables {
 
     list(cb) {
         this.regKeyRef.values((err, items) => {
-            console.log('UserEnv.List.items', items);
             const cleanedItems = items.map(RegistryItem => {
                 return {name: RegistryItem.name, value: RegistryItem.value}
             });
@@ -54,18 +53,16 @@ class Variables {
 
     getVariables(cb) {
         if (!this.variables) {
-            console.log('setear por 1ra vez.', 'sistema?', this.isSystem);
             return this.list((err) => {
-                console.log('getVariables.List seteando', this.variables);
                 cb(err, this.variables)
             });
         }
-        console.log('getVariables.List YA seteandas', this.variables);
         return cb(null, this.variables);
     }
 
     set(varData, cb) {
-        let cmd = `setx ${varData.name} ${varData.value}`;
+        let cmd = `setx ${varData.name} "${varData.value}"`;
+        console.log('wregistry.Variables.set.cmd', cmd);
         if (this.isSystem) cmd += ' /M';
         exec(cmd, (err, stdout, stderr) => {
             return cb(err, stdout, stderr)
