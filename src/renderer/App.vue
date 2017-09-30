@@ -2,9 +2,9 @@
     <div id="app">
         <!--<user-variables></user-variables>-->
         <!--<system-variables></system-variables>-->
-        <!--<user-path></user-path>-->
+        <user-path></user-path>
         <!--<system-path></system-path>-->
-        <open-dialog></open-dialog>
+        <!--<open-dialog></open-dialog>-->
     </div>
 </template>
 

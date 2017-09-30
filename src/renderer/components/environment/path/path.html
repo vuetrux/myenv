@@ -2,6 +2,7 @@
     <p>
         <input type="text" v-model="varValue">
         <button @click="addPath()">Nueva</button>
+        <open-dialog @selected-folder="selectedFolderByAdding"></open-dialog>
     </p>
     <template v-for="(v, index) in Path">
         <p v-if="editing.id !== index">
@@ -12,6 +13,7 @@
         <p v-else>
             <input type="text" v-model="editing.value">
             <button @click="editPath(v, index)">Ok</button>
+            <open-dialog @selected-folder="selectedFolderByEditing"></open-dialog>
             <button @click="cancelEdit">Cancelar</button>
         </p>
     </template>

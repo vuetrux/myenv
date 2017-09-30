@@ -5,39 +5,58 @@
  * Este especificamente maneja solo en Path de sist y del user
  * */
 
+import OpenDialog from '../../OpenDialog.vue'
+
 export default {
-    data(){
+    data() {
         return {
             Path: [],
             editing: {id: -1, value: ''},
             varValue: ''
         }
     },
+    components: {OpenDialog},
     mounted() {
         this.Environment.getPath((err, path) => this.Path = path);
     },
-    methods:{
-        addPath(){
+    methods: {
+        selectedFolderByAdding(folder) {
+            this.varValue = folder;
+            this.addPath();
+        },
+        selectedFolderByEditing(folder){
+            let index = this.editing.id;
+            let oldValue = this.Path[this.editing.id];
+            if (oldValue !== folder) {
+                this.editing.value = folder;
+                this.editPath(oldValue, index);
+            }
+            console.log(index, oldValue, folder);
+        },
+        addPath() {
             this.Environment.addPath(this.varValue, err => {
-                err && new Notification(err)
+                if (err) {
+                    return new Notification(err)
+                }
+                this.varValue = '';
             })
         },
-        delPath(index){
+        delPath(index) {
             this.Environment.delPath(index, err => {
                 err && new Notification(err)
             })
         },
-        showEditor(index, varValue){
+        showEditor(index, varValue) {
             this.editing.id = index;
             this.editing.value = varValue;
         },
-        cancelEdit(){
+        cancelEdit() {
             this.editing.id = -1;
             this.editing.value = '';
         },
-        editPath(oldValue, index){
+        editPath(oldValue, index) {
             let valueChange = oldValue !== this.editing.value;
-            if(valueChange){
+            if (valueChange) {
                 this.Environment.editPath(this.editing.value, index, err => {
                     err && new Notification(err)
                 });

@@ -7,7 +7,6 @@
         methods:{
             openDialog(){
                 this.$native.dialog.showOpenDialog({properties: ['openDirectory']}, files => {
-                    console.log(files);
                     files && this.$emit('selected-folder', files[0])
                 })
             }
