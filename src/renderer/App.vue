@@ -2,8 +2,9 @@
     <div id="app">
         <!--<user-variables></user-variables>-->
         <!--<system-variables></system-variables>-->
-        <user-path></user-path>
-        <system-path></system-path>
+        <!--<user-path></user-path>-->
+        <!--<system-path></system-path>-->
+        <open-dialog></open-dialog>
     </div>
 </template>
 
@@ -14,15 +15,15 @@
     import SystemVariables from './components/environment/variables/SystemVariables.vue'
     import SystemPath from './components/environment/path/SystemPath.vue'
     import UserPath from './components/environment/path/UserPath.vue'
+    import OpenDialog from './components/OpenDialog.vue'
 
     export default {
         name: 'myenv',
-        components: {UserVariables, SystemVariables, SystemPath, UserPath},
+        components: {OpenDialog, UserVariables, SystemVariables, SystemPath, UserPath},
         mounted() {
             if (ErrorPlatform) {
                 console.error(ErrorPlatform);
                 this.error = ErrorPlatform;
-                return
             }
         },
     }
