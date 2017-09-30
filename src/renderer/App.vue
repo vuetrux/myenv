@@ -10,7 +10,6 @@
 <script>
     import EnvVar from "./env-var"
     import {ErrorPlatform, VAR_TYPE} from "./env-var"
-    import EnvPath from './components/Path.vue'
     import UserVariables from './components/environment/variables/UserVariables.vue'
     import SystemVariables from './components/environment/variables/SystemVariables.vue'
     import SystemPath from './components/environment/path/SystemPath.vue'
@@ -18,7 +17,7 @@
 
     export default {
         name: 'myenv',
-        components: {EnvPath, UserVariables, SystemVariables, SystemPath, UserPath},
+        components: {UserVariables, SystemVariables, SystemPath, UserPath},
         mounted() {
             if (ErrorPlatform) {
                 console.error(ErrorPlatform);
