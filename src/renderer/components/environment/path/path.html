@@ -1,0 +1,18 @@
+<div>
+    <p>
+        <input type="text" v-model="varValue">
+        <button @click="addPath()">Nueva</button>
+    </p>
+    <template v-for="(v, index) in Path">
+        <p v-if="editing.id !== index">
+            <span>{{v}}</span>
+            <button @click="delPath(index)">Eliminar</button>
+            <button @click="showEditor(index, v)">Editar</button>
+        </p>
+        <p v-else>
+            <input type="text" v-model="editing.value">
+            <button @click="editPath(v, index)">Ok</button>
+            <button @click="cancelEdit">Cancelar</button>
+        </p>
+    </template>
+</div>

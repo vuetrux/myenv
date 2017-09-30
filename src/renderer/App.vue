@@ -18,16 +18,6 @@
 
     export default {
         name: 'myenv',
-        data() {
-            return {
-                System: [],
-                Path: [],
-                error: '',
-                'newPathValue': '',
-                'editPathValue': '',
-                VAR_TYPE: VAR_TYPE
-            }
-        },
         components: {EnvPath, UserVariables, SystemVariables, SystemPath, UserPath},
         mounted() {
             if (ErrorPlatform) {
@@ -36,32 +26,6 @@
                 return
             }
         },
-        methods: {
-            newPath() {
-                this.Path.push(this.newPathValue);
-                this.setPath();
-            },
-            delPath(index) {
-                this.Path.splice(index, 1);
-                this.setPath();
-            },
-            editPath(index) {
-                this.editPathValue = this.Path[index];
-            },
-            confirmEditPath(index) {
-                this.Path[index] = this.editPathValue;
-                this.setPath();
-                this.editPathValue = ''
-            },
-            setPath() {
-                console.log(this.Path);
-                EnvVar.Set({name: 'Path', value: this.Path.join(';')}, VAR_TYPE.Path, (err, stdout, stderr) => {
-                    console.log(stdout);
-                    console.error(stderr);
-                    console.error(err);
-                })
-            },
-        }
     }
 </script>
 
