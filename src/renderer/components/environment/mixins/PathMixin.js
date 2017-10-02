@@ -12,7 +12,8 @@ export default {
         return {
             Path: [],
             editing: {id: -1, value: ''},
-            varValue: ''
+            varValue: '',
+            showBtnsIndex: -1
         }
     },
     components: {OpenDialog},

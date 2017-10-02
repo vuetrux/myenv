@@ -1,20 +1,33 @@
 <div>
-    <p>
-        <input type="text" v-model="varValue">
-        <button @click="addPath()">Nueva</button>
-        <open-dialog @selected-folder="selectedFolderByAdding"></open-dialog>
-    </p>
-    <template v-for="(v, index) in Path">
-        <p v-if="editing.id !== index">
-            <span>{{v}}</span>
-            <button @click="delPath(index)">Eliminar</button>
-            <button @click="showEditor(index, v)">Editar</button>
-        </p>
-        <p v-else>
-            <input type="text" v-model="editing.value">
-            <button @click="editPath(v, index)">Ok</button>
-            <open-dialog @selected-folder="selectedFolderByEditing"></open-dialog>
-            <button @click="cancelEdit">Cancelar</button>
-        </p>
-    </template>
+    <div class="field is-grouped">
+        <div class="control is-expanded">
+            <input class="input" type="text" placeholder="Nueva variable..." v-model="varValue" @keypress.enter="addPath()">
+        </div>
+        <div class="control">
+            <a class="button is-success" @click="addPath()">
+                <i class="ti-check"></i>
+            </a>
+        </div>
+        <div class="control">
+            <open-dialog @selected-folder="selectedFolderByAdding"></open-dialog>
+        </div>
+    </div>
+    <div class="card">
+        <div v-for="(v, index) in Path" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
+            <div v-if="editing.id !== index">
+                <span>{{v}}</span>
+                <div style="float: right" v-show="showBtnsIndex==index">
+                    <ti-btn icon="ti-trash" color="red" @click="delPath(index)"></ti-btn>
+                    <ti-btn icon="ti-pencil" @click="showEditor(index, v)"></ti-btn>
+                </div>
+            </div>
+            <div v-else>
+                <input type="text" v-model="editing.value">
+                <button @click="editPath(v, index)">Ok</button>
+                <open-dialog @selected-folder="selectedFolderByEditing"></open-dialog>
+                <button @click="cancelEdit">Cancelar</button>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
 </div>

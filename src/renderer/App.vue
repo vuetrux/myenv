@@ -1,8 +1,18 @@
 <template>
-    <div id="app">
+    <div id="app" class="container">
+        <div class="tabs is-centered">
+            <ul>
+                <li class="is-active"><a>Path</a></li>
+                <li><a>Usuario</a></li>
+                <li><a>Sistema</a></li>
+            </ul>
+        </div>
         <!--<user-variables></user-variables>-->
         <!--<system-variables></system-variables>-->
-        <user-path></user-path>
+        <div class="content">
+            <user-path></user-path>
+
+        </div>
         <!--<system-path></system-path>-->
         <!--<open-dialog></open-dialog>-->
     </div>
@@ -31,8 +41,26 @@
 
 <style>
     /* CSS */
-    input[type=text], button {
+    button {
         border: 1px solid black
+    }
+    .content ul{
+        list-style: none;
+    }
+    .content ul li:hover, div.card > div:hover{
+        background-color: whitesmoke;
+    }
+    .content ul li, div.card > div{
+        padding: 5px;
+        /*border: 1px solid blue;*/
+        /*border-bottom: 1px solid whitesmoke;*/
+    }
+    .content input[type=text]{
+        border-radius: 0;
+    }
+
+    .content{
+        padding: 10px;
     }
 
 </style>

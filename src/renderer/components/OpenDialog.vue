@@ -1,5 +1,6 @@
 <template>
-<button @click="openDialog">...</button>
+<!--<button @click="openDialog">...</button>-->
+    <a class="button" @click="openDialog"><i class="ti-more-alt"></i></a>
 </template>
 
 <script>
