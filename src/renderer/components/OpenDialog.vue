@@ -1,10 +1,14 @@
 <template>
-<!--<button @click="openDialog">...</button>-->
-    <a class="button" @click="openDialog"><i class="ti-more-alt"></i></a>
+    <!--<ti-btn-inverse icon="ti-more-alt" @click.native="openDialog"></ti-btn-inverse>-->
+    <ti-btn icon="ti-more-alt" :size="size" @click.native="openDialog"></ti-btn>
 </template>
 
 <script>
+    import TiBtnInverse from './buttons/TiBtnInverse.vue'
+    import TiBtn from './buttons/TiBtn.vue'
     export default {
+        props: ['size'],
+        components: {TiBtnInverse, TiBtn},
         methods:{
             openDialog(){
                 this.$native.dialog.showOpenDialog({properties: ['openDirectory']}, files => {

@@ -35,6 +35,7 @@ export default {
             console.log(index, oldValue, folder);
         },
         addPath() {
+            if(!this.varValue) return;
             this.Environment.addPath(this.varValue, err => {
                 if (err) {
                     return new Notification(err)
