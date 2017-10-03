@@ -19,21 +19,6 @@ const SystemEnvRegKey = new Registry({
     key: REG_KEY.System
 });
 
-// export const UserEnvList = function (cb) {
-//     UserEnvRegKey.values((err, items) => {
-//         return cb(err, items.map(RegistryItem => {
-//             return {name: RegistryItem.name, value: RegistryItem.value}
-//         }))
-//     })
-// };
-// export const SystemEnvList = function (cb) {
-//     SystemEnvRegKey.values((err, items) => {
-//         return cb(err, items.map(RegistryItem => {
-//             return {name: RegistryItem.name, value: RegistryItem.value}
-//         }))
-//     })
-// };
-
 class Variables {
     variables = undefined;
     path = [];
@@ -99,9 +84,6 @@ export class SystemEnv extends Variables {
         this.regKeyRef = SystemEnvRegKey;
     }
 }
-
-//TEMP %USERPROFILE%\AppData\Local\Temp
-// PATH: C:\Program Files\gettext-iconv\bin;C:\Users\adrian\AppData\Roaming\npm;C:\Users\adrian\AppData\Local\Yarn\bin
 
 class Path extends Variables {
     name = 'Path';
