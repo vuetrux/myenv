@@ -15,7 +15,8 @@ export default {
             Variables: [],
             varName: '',
             varValue: '',
-            editing: {id: -1, name: '', value: ''}
+            editing: {id: -1, name: '', value: ''},
+            showBtnsIndex: -1
         }
     },
     methods: {

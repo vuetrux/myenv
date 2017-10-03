@@ -25,7 +25,7 @@
         name: 'myenv',
         components: {OpenDialog, UserVariables, SystemVariables, FullPath},
         data() {
-            return {currentView: 'full-path', views: {PATH: 'full-path', USER: 'user-variables', SYSTEM: 'system-variables'}}
+            return {currentView: 'user-variables', views: {PATH: 'full-path', USER: 'user-variables', SYSTEM: 'system-variables'}}
         },
         mounted() {
             if (ErrorPlatform) {

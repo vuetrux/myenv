@@ -2,10 +2,10 @@
     <h2 class="subtitle is-5">{{title}}</h2>
     <div class="field is-grouped">
         <div class="control is-expanded">
-            <input class="input" type="text" placeholder="Nueva variable..." v-model="varValue" @keypress.enter="addPath()">
+            <input class="input is-hovered" type="text" placeholder="Nueva variable..." v-model="varValue" @keypress.enter="addPath()">
         </div>
         <div class="control">
-            <ti-btn-inverse icon="ti-check" :size="34" color="#22c65b" @click="addPath()"></ti-btn-inverse>
+            <ti-btn-inverse icon="ti-check" :size="34" color="#22c65b" @click.native="addPath()"></ti-btn-inverse>
             <open-dialog @selected-folder="selectedFolderByAdding"></open-dialog>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <div v-else>
                 <div class="field is-grouped">
                     <div class="control is-expanded">
-                        <input class="input" type="text" placeholder="Nuevo valor..." v-model="editing.value" @keypress.enter="addPath()">
+                        <input class="input is-small" type="text" placeholder="Nuevo valor..." v-model="editing.value" @keypress.enter="editPath(v, index)">
                     </div>
                     <div class="control">
                         <ti-btn icon="ti-check" :size="14" color="#22c65b" @click.native="editPath(v, index)"></ti-btn>

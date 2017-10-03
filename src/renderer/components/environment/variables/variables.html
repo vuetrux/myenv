@@ -1,23 +1,49 @@
 <div>
-    <p>
-        <input type="text" v-model="varName">
-        <input type="text" v-model="varValue">
-        <button @click.prevent="setVar()">Nueva</button>
-        <open-dialog @selected-folder="selectedFolderByAdding"></open-dialog>
-    </p>
-    <hr>
-    <template v-for="(v, index) in Variables">
-        <p v-if="editing.id !== index">
-            <span><b>{{v.name}}</b> <br> {{v.value}}</span>
-            <button @click="delVar(v.name)">Eliminar</button>
-            <button @click="showEditor(v, index)">Editar</button>
-        </p>
-        <p v-else>
-            <input type="text" v-model="editing.name">
-            <input type="text" v-model="editing.value">
-            <button @click="editVar(v.name, v.value)">Ok</button>
-            <open-dialog @selected-folder="selectedFolderByEditing"></open-dialog>
-            <button @click="cancelEdit">Cancelar</button>
-        </p>
-    </template>
+    <div class="field">
+        <div class="control is-expanded">
+            <input class="input is-hovered" type="text" placeholder="Nombre para la nueva variable..." v-model="varName">
+        </div>
+    </div>
+    <div class="field is-grouped">
+        <div class="control is-expanded">
+            <input class="input is-hovered" type="text" placeholder="Valor para la nueva variable..." v-model="varValue" @keypress.enter="setVar()">
+        </div>
+        <div class="control">
+            <ti-btn-inverse icon="ti-check" :size="34" color="#22c65b" @click.native="setVar()"></ti-btn-inverse>
+            <open-dialog @selected-folder="selectedFolderByAdding"></open-dialog>
+        </div>
+    </div>
+    <div class="card">
+    <div v-for="(v, index) in Variables" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
+        <div v-if="editing.id !== index">
+            <div style="float: right" v-show="showBtnsIndex==index">
+                <ti-btn icon="ti-trash" color="red" @click.native="delVar(v.name)"></ti-btn>
+                <ti-btn icon="ti-pencil" @click.native="showEditor(v, index)"></ti-btn>
+            </div>
+            <span class="subtitle">{{v.name}}</span> <br> <span>{{v.value}}</span>
+        </div>
+        <div v-else>
+            <!--<input type="text" v-model="editing.name">-->
+            <!--<input type="text" v-model="editing.value">-->
+            <!--<button @click="editVar(v.name, v.value)">Ok</button>-->
+            <!--<open-dialog @selected-folder="selectedFolderByEditing"></open-dialog>-->
+            <!--<button @click="cancelEdit">Cancelar</button>-->
+            <div class="field">
+                <div class="control is-expanded">
+                    <input class="input is-hovered is-small" type="text" placeholder="Nuevo nombre para la variable..." v-model="editing.name">
+                </div>
+            </div>
+            <div class="field is-grouped">
+                <div class="control is-expanded">
+                    <input class="input is-hovered is-small" type="text" placeholder="Nuevo valor para la variable..." v-model="editing.value" @keypress.enter="editVar(v.name, v.value)">
+                </div>
+                <div class="control">
+                    <ti-btn-inverse icon="ti-check" :size="14" color="#22c65b" @click.native="editVar(v.name, v.value)"></ti-btn-inverse>
+                    <open-dialog @selected-folder="selectedFolderByEditing" :size="14"></open-dialog>
+                    <ti-btn icon="ti-close" :size="14" @click.native="cancelEdit"></ti-btn>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </div>
