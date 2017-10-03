@@ -31,6 +31,7 @@ export default {
                     if (stderr || err) {
                         console.error(stderr);
                         new Notification(stderr);
+                        this.$emit('notificate', {type: 'is-danger', text: stderr});
                         return rej(stderr)
                     }
                     console.log(stdout);
