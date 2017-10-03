@@ -4,8 +4,8 @@
 </template>
 
 <script>
-    import TiBtnInverse from './buttons/TiBtnInverse.vue'
-    import TiBtn from './buttons/TiBtn.vue'
+    import TiBtnInverse from './TiBtnInverse.vue'
+    import TiBtn from './TiBtn.vue'
     export default {
         props: ['size'],
         components: {TiBtnInverse, TiBtn},

@@ -3,7 +3,7 @@
  * despues de tod ambas tienen la misma estructura, lo unico q las diferencia es el lugar de regedt
  * en donde se almacenan
  * */
-import OpenDialog from '../../OpenDialog.vue'
+import OpenDialog from '../../buttons/OpenDialog.vue'
 
 export default {
     components: {OpenDialog},

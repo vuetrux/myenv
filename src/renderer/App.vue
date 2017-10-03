@@ -25,7 +25,7 @@
     import SystemVariables from './components/environment/variables/SystemVariables.vue'
     import SystemPath from './components/environment/path/SystemPath.vue'
     import UserPath from './components/environment/path/UserPath.vue'
-    import OpenDialog from './components/OpenDialog.vue'
+    import OpenDialog from './components/buttons/OpenDialog.vue'
 
     export default {
         name: 'myenv',

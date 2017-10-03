@@ -5,7 +5,7 @@
  * Este especificamente maneja solo en Path de sist y del user
  * */
 
-import OpenDialog from '../../OpenDialog.vue'
+import OpenDialog from '../../buttons/OpenDialog.vue'
 
 export default {
     data() {
