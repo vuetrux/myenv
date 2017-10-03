@@ -9,6 +9,7 @@
     export default {
         mixins: [PathMixin],
         components: {TiBtn, TiBtnInverse},
+        data(){return {title: 'Path del usuario'}},
         created() {
             this.Environment = EnvVar.UserPath;
         },

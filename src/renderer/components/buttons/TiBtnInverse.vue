@@ -9,6 +9,7 @@
     import btnMixin from './btnMixin'
     //#22c65b
     export default {
+        name: 'ti-inverse',
         mixins: [btnMixin],
         data() {
             return {backgroundColor: '', fontColor: this.color}

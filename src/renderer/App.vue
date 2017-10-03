@@ -11,9 +11,9 @@
         <!--<system-variables></system-variables>-->
         <div class="content">
             <user-path></user-path>
+            <system-path></system-path>
 
         </div>
-        <!--<system-path></system-path>-->
         <!--<open-dialog></open-dialog>-->
     </div>
 </template>

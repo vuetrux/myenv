@@ -6,6 +6,7 @@
     import btnMixin from './btnMixin'
     //#22c65b
     export default {
+        name: 'ti-btn',
         mixins: [btnMixin],
     }
 </script>
