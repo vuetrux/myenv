@@ -38,14 +38,17 @@ export default {
             if(!this.varValue) return;
             this.Environment.addPath(this.varValue, err => {
                 if (err) {
-                    return new Notification(err)
+                    console.log(err);
+                    this.$emit('notificate', {type: 'is-danger', text: err});
+                    // return new Notification(err)
                 }
                 this.varValue = '';
             })
         },
         delPath(index) {
             this.Environment.delPath(index, err => {
-                err && new Notification(err)
+                // err && new Notification(err)
+                err && this.$emit('notificate', {type: 'is-danger', text: err});
             })
         },
         showEditor(index, varValue) {
@@ -62,7 +65,8 @@ export default {
             let valueChange = oldValue !== this.editing.value;
             if (valueChange) {
                 this.Environment.editPath(this.editing.value, index, err => {
-                    err && new Notification(err)
+                    // err && new Notification(err)
+                    err && this.$emit('notificate', {type: 'is-danger', text: err});
                 });
             }
             this.cancelEdit()

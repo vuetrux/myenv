@@ -147,7 +147,10 @@ class Path extends Variables {
         this.setPath(path, err => {
             if (err) return cb(err);
             this.path[index] = varValue;
-            // ahora hay q reflejar el cambio en la lista. si se pone this.path[index] = varValue; fuera de este callback vue actualiza solo, pero dentro del callback el reactivity no se entera de q un indice fue actualizado, hay q obligar la actualizacion haciendo push a un elemento cualq y luego eliminando el valor
+            // ahora hay q reflejar el cambio en la lista. si se pone this.path[index] = varValue;
+            // fuera de este callback vue actualiza solo, pero dentro del callback el reactivity no se entera
+            // de q un indice fue actualizado, hay q obligar la actualizacion haciendo push a un elemento
+            // cualq y luego eliminando el valor
             this.path.push('xx') && this.path.splice(this.path.length - 1, 1);
             cb()
         });
@@ -156,7 +159,7 @@ class Path extends Variables {
     setPath(path_, cb) {
         let path = path_ || this.path;
         let newPathStr = path.join(';');
-        this.set({name: this.name, value: newPathStr}, err => cb(err))
+        this.set({name: this.name, value: newPathStr}, (err, stdout, stderr) => cb(stderr))
     }
 }
 

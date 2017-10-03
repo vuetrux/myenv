@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div class="content">
-            <component :is="currentView" keep-alive transition="fade" transition-mode="out-in" @notificate="notificated"></component>
+            <component :is="currentView" keep-alive @notificate="notificated"></component>
         </div>
     </div>
 </template>
@@ -31,7 +31,7 @@
         components: {OpenDialog, UserVariables, SystemVariables, FullPath},
         data() {
             return {
-                currentView: 'user-variables',
+                currentView: 'full-path',
                 views: {PATH: 'full-path', USER: 'user-variables', SYSTEM: 'system-variables'},
                 notification: {show: false, type: '', text: ''}
             }
@@ -44,40 +44,32 @@
         },
         methods: {
             notificated({type, text}){
+                console.log('notificated!');
                 this.notification.show = true;
                 this.notification.type = type;
                 this.notification.text = text;
             }
         }
-//        computed: {
-//            isActive(){
-//                return this.
-//            }
-//        }
     }
 </script>
 
 <style>
+    .card{
+        background-color: whitesmoke;
+    }
     .notification {
         position: absolute;
         top: 4px;
+        right: 0;
         z-index: 10;
-    }
-
-    .fade-transition {
-        transition: opacity 2s ease;
-    }
-
-    .fade-enter, .fade-leave {
-        opacity: 0;
     }
 
     .content ul {
         list-style: none;
     }
 
-    .content ul li:hover, div.card > div:hover {
-        background-color: whitesmoke;
+    .content div.card > div:hover {
+        background-color: rgba(0, 209, 178, 0.09);
     }
 
     .content ul li, div.card > div {

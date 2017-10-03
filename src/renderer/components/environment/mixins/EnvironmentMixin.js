@@ -30,7 +30,7 @@ export default {
                 this.Environment.set(newVarData, (err, stdout, stderr) => {
                     if (stderr || err) {
                         console.error(stderr);
-                        new Notification(stderr);
+                        // new Notification(stderr);
                         this.$emit('notificate', {type: 'is-danger', text: stderr});
                         return rej(stderr)
                     }
@@ -48,7 +48,8 @@ export default {
                 this.Environment.remove(varName, err => {
                     if (err) {
                         // console.log('EnviromentsVariables.vue deleting', varName, err.message);
-                        new Notification(err.message);
+                        // new Notification(err.message);
+                        this.$emit('notificate', {type: 'is-danger', text: err.message});
                         return rej(err.message)
                     }
                     if (!updateList) return res();
