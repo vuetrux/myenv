@@ -13,7 +13,7 @@
         <div v-for="(v, index) in Path" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
             <div v-if="editing.id !== index">
                 <span>{{v}}</span>
-                <div style="float: right" v-show="showBtnsIndex==index">
+                <div style="float: right" v-show="showBtnsIndex==index && !editing.blocked">
                     <ti-btn icon="ti-trash" color="red" @click.native="delPath(index)"></ti-btn>
                     <ti-btn icon="ti-pencil" @click.native="showEditor(index, v)"></ti-btn>
                 </div>
@@ -21,10 +21,10 @@
             <div v-else>
                 <div class="field is-grouped">
                     <div class="control is-expanded">
-                        <input class="input is-small" type="text" placeholder="Nuevo valor..." v-model="editing.value" @keypress.enter="editPath(v, index)">
+                        <input class="input is-small" type="text" placeholder="Nuevo valor..." v-model="editing.value" @keypress.enter="editPath(v, index)" @focus="$event.target.select()">
                     </div>
                     <div class="control">
-                        <ti-btn icon="ti-check" :size="14" color="#22c65b" @click.native="editPath(v, index)"></ti-btn>
+                        <ti-btn-inverse icon="ti-check" :size="14" color="#22c65b" @click.native="editPath(v, index)"></ti-btn-inverse>
                         <open-dialog :size="14" @selected-folder="selectedFolderByEditing"></open-dialog>
                         <ti-btn icon="ti-close" :size="14" @click.native="cancelEdit"></ti-btn>
                     </div>

@@ -15,7 +15,7 @@ export default {
             Variables: [],
             varName: '',
             varValue: '',
-            editing: {id: -1, name: '', value: ''},
+            editing: {id: -1, name: '', value: '', blocked: false},
             showBtnsIndex: -1
         }
     },
@@ -72,11 +72,13 @@ export default {
             this.editing.id = index;
             this.editing.name = name;
             this.editing.value = value;
+            this.editing.blocked = true;
         },
         cancelEdit() {
             this.editing.id = -1;
             this.editing.name = '';
             this.editing.value = '';
+            this.editing.blocked = false;
         },
         editVar(oldName, oldValue) {
             let nameChanged = oldName !== this.editing.name;

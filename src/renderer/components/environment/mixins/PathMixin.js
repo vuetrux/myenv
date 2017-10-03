@@ -11,7 +11,7 @@ export default {
     data() {
         return {
             Path: [],
-            editing: {id: -1, value: ''},
+            editing: {id: -1, value: '', blocked: false},
             varValue: '',
             showBtnsIndex: -1
         }
@@ -51,10 +51,12 @@ export default {
         showEditor(index, varValue) {
             this.editing.id = index;
             this.editing.value = varValue;
+            this.editing.blocked = true;
         },
         cancelEdit() {
             this.editing.id = -1;
             this.editing.value = '';
+            this.editing.blocked = false;
         },
         editPath(oldValue, index) {
             let valueChange = oldValue !== this.editing.value;

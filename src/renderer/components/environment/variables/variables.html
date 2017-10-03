@@ -16,26 +16,21 @@
     <div class="card">
     <div v-for="(v, index) in Variables" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
         <div v-if="editing.id !== index">
-            <div style="float: right" v-show="showBtnsIndex==index">
-                <ti-btn icon="ti-trash" color="red" @click.native="delVar(v.name)"></ti-btn>
-                <ti-btn icon="ti-pencil" @click.native="showEditor(v, index)"></ti-btn>
+            <div style="float: right" v-show="showBtnsIndex==index  && !editing.blocked">
+                <ti-btn icon="ti-trash" :size="30" color="red" @click.native="delVar(v.name)"></ti-btn>
+                <ti-btn icon="ti-pencil" :size="30" @click.native="showEditor(v, index)"></ti-btn>
             </div>
             <span class="subtitle">{{v.name}}</span> <br> <span>{{v.value}}</span>
         </div>
         <div v-else>
-            <!--<input type="text" v-model="editing.name">-->
-            <!--<input type="text" v-model="editing.value">-->
-            <!--<button @click="editVar(v.name, v.value)">Ok</button>-->
-            <!--<open-dialog @selected-folder="selectedFolderByEditing"></open-dialog>-->
-            <!--<button @click="cancelEdit">Cancelar</button>-->
             <div class="field">
                 <div class="control is-expanded">
-                    <input class="input is-hovered is-small" type="text" placeholder="Nuevo nombre para la variable..." v-model="editing.name">
+                    <input class="input is-hovered is-small" type="text" placeholder="Nuevo nombre para la variable..." v-model="editing.name" @focus="$event.target.select()">
                 </div>
             </div>
             <div class="field is-grouped">
                 <div class="control is-expanded">
-                    <input class="input is-hovered is-small" type="text" placeholder="Nuevo valor para la variable..." v-model="editing.value" @keypress.enter="editVar(v.name, v.value)">
+                    <input class="input is-hovered is-small" type="text" placeholder="Nuevo valor para la variable..." v-model="editing.value" @keypress.enter="editVar(v.name, v.value)" @focus="$event.target.select()">
                 </div>
                 <div class="control">
                     <ti-btn-inverse icon="ti-check" :size="14" color="#22c65b" @click.native="editVar(v.name, v.value)"></ti-btn-inverse>
