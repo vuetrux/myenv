@@ -33,9 +33,14 @@
                     <input class="input is-hovered is-small" type="text" placeholder="Nuevo valor para la variable..." v-model="editing.value" @keypress.enter="editVar(v.name, v.value)" @focus="$event.target.select()">
                 </div>
                 <div class="control">
-                    <ti-btn-inverse icon="ti-check" :size="20" color="#22c65b" @click.native="editVar(v.name, v.value)"></ti-btn-inverse>
-                    <open-dialog @selected-folder="selectedFolderByEditing" :size="14"></open-dialog>
-                    <ti-btn icon="ti-close" :size="14" @click.native="cancelEdit"></ti-btn>
+                    <template v-if="!isLoading">
+                        <ti-btn-inverse icon="ti-check" :size="20" color="#22c65b" @click.native="editVar(v.name, v.value)"></ti-btn-inverse>
+                        <open-dialog @selected-folder="selectedFolderByEditing" :size="14"></open-dialog>
+                        <ti-btn icon="ti-close" :size="14" @click.native="cancelEdit"></ti-btn>
+                    </template>
+                    <template v-else>
+                        <img src="~@/assets/ajax-loader-green.gif">
+                    </template>
                 </div>
             </div>
         </div>

@@ -6,15 +6,15 @@
  * */
 
 import OpenDialog from '../../buttons/OpenDialog.vue'
+import uxMixin from './uxMixin'
 
 export default {
+    mixins: [uxMixin],
     data() {
         return {
             Path: [],
             editing: {id: -1, value: '', blocked: false},
             varValue: '',
-            showBtnsIndex: -1,
-            isInputLoading: false,
         }
     },
     components: {OpenDialog},
@@ -26,7 +26,7 @@ export default {
             this.varValue = folder;
             this.addPath();
         },
-        selectedFolderByEditing(folder){
+        selectedFolderByEditing(folder) {
             let index = this.editing.id;
             let oldValue = this.Path[this.editing.id];
             if (oldValue !== folder) {
@@ -36,7 +36,7 @@ export default {
             console.log(index, oldValue, folder);
         },
         addPath() {
-            if(!this.varValue) return;
+            if (!this.varValue) return;
             this.isInputLoading = true;
             this.Environment.addPath(this.varValue, err => {
                 err && this.$emit('notificate', {type: 'is-danger', text: err});
@@ -45,9 +45,11 @@ export default {
             })
         },
         delPath(index) {
+            this.isLoading = true;
             this.Environment.delPath(index, err => {
                 // err && new Notification(err)
                 err && this.$emit('notificate', {type: 'is-danger', text: err});
+                this.isLoading = false;
             })
         },
         showEditor(index, varValue) {
@@ -63,9 +65,11 @@ export default {
         editPath(oldValue, index) {
             let valueChange = oldValue !== this.editing.value;
             if (valueChange) {
+                this.isLoading = true;
                 this.Environment.editPath(this.editing.value, index, err => {
                     // err && new Notification(err)
                     err && this.$emit('notificate', {type: 'is-danger', text: err});
+                    this.isLoading = false;
                 });
             }
             this.cancelEdit()

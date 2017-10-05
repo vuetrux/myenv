@@ -12,6 +12,7 @@
     <div class="card">
         <div v-for="(v, index) in Path" :key="index" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
             <div v-if="editing.id !== index">
+                <div style="width: 100%;height: 100%;position: relative;top: 0;left: 0;background-color: #00a8c6"></div>
                 <span>{{v}}</span>
                 <div style="float: right" v-show="showBtnsIndex==index && !editing.blocked">
                     <ti-btn icon="ti-trash" color="red" @click.native="delPath(index)"></ti-btn>
@@ -24,9 +25,14 @@
                         <input class="input is-small" type="text" placeholder="Nuevo valor..." v-model="editing.value" @keypress.enter="editPath(v, index)" @focus="$event.target.select()">
                     </div>
                     <div class="control">
-                        <ti-btn-inverse icon="ti-check" :size="20" color="#22c65b" @click.native="editPath(v, index)"></ti-btn-inverse>
-                        <open-dialog :size="14" @selected-folder="selectedFolderByEditing"></open-dialog>
-                        <ti-btn icon="ti-close" :size="14" @click.native="cancelEdit"></ti-btn>
+                        <template v-if="!isLoading">
+                            <ti-btn-inverse icon="ti-check" :size="20" color="#22c65b" @click.native="editPath(v, index)"></ti-btn-inverse>
+                            <open-dialog :size="14" @selected-folder="selectedFolderByEditing"></open-dialog>
+                            <ti-btn icon="ti-close" :size="14" @click.native="cancelEdit"></ti-btn>
+                        </template>
+                        <template v-else>
+                            <img src="~@/assets/ajax-loader-green.gif">
+                        </template>
                     </div>
                 </div>
             </div>

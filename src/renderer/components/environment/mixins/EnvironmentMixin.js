@@ -4,8 +4,10 @@
  * en donde se almacenan
  * */
 import OpenDialog from '../../buttons/OpenDialog.vue'
+import uxMixin from './uxMixin'
 
 export default {
+    mixins: [uxMixin],
     components: {OpenDialog},
     mounted() {
         this.Environment.getVariables((err, Variables) => this.Variables = Variables);
@@ -16,8 +18,6 @@ export default {
             varName: '',
             varValue: '',
             editing: {id: -1, name: '', value: '', blocked: false},
-            showBtnsIndex: -1,
-            isInputLoading: false,
         }
     },
     methods: {
