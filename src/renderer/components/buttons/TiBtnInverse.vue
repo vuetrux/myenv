@@ -7,12 +7,13 @@
 
 <script>
     import btnMixin from './btnMixin'
+    const BACK_COLOR_DEFAULT = 'rgba(0,0,0,0)';
     //#22c65b
     export default {
         name: 'ti-inverse',
         mixins: [btnMixin],
         data() {
-            return {backgroundColor: '', fontColor: this.color}
+            return {backgroundColor: BACK_COLOR_DEFAULT, fontColor: this.color}
         },
         methods: {
             over() {
@@ -20,7 +21,7 @@
                 this.fontColor = '#fff';
             },
             leave() {
-                this.backgroundColor = '#fff';
+                this.backgroundColor = BACK_COLOR_DEFAULT;
                 this.fontColor = this.color;
             }
         }
