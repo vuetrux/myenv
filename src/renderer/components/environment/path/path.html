@@ -1,7 +1,7 @@
 <div>
     <h2 class="subtitle is-5">{{title}}</h2>
     <div class="field is-grouped">
-        <div class="control is-expanded">
+        <div class="control is-expanded" :class="{'is-loading': isInputLoading}">
             <input class="input is-hovered" type="text" placeholder="Nueva variable..." v-model="varValue" @keypress.enter="addPath()">
         </div>
         <div class="control">

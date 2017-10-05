@@ -16,7 +16,8 @@ export default {
             varName: '',
             varValue: '',
             editing: {id: -1, name: '', value: '', blocked: false},
-            showBtnsIndex: -1
+            showBtnsIndex: -1,
+            isInputLoading: false,
         }
     },
     methods: {
@@ -26,18 +27,18 @@ export default {
                 value: varValue || this.varValue
             };
             if (!newVarData.name || !newVarData.value) return;
+            this.isInputLoading = true;
             return new Promise((res, rej) => {
                 this.Environment.set(newVarData, (err, stdout, stderr) => {
                     if (stderr || err) {
                         console.error(stderr);
-                        // new Notification(stderr);
                         this.$emit('notificate', {type: 'is-danger', text: stderr});
+                        this.cleanInputs();
                         return rej(stderr)
                     }
                     console.log(stdout);
                     updateList && this.Variables.push(newVarData);
-                    this.varValue = '';
-                    this.varName = '';
+                    this.cleanInputs();
                     res()
                 })
             });
@@ -81,6 +82,11 @@ export default {
             this.editing.name = '';
             this.editing.value = '';
             this.editing.blocked = false;
+        },
+        cleanInputs(){
+            this.varValue = '';
+            this.varName = '';
+            this.isInputLoading = false;
         },
         editVar(oldName, oldValue) {
             let nameChanged = oldName !== this.editing.name;

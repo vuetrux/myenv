@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="field is-grouped">
-        <div class="control is-expanded">
+        <div class="control is-expanded" :class="{'is-loading': isInputLoading}">
             <input class="input is-hovered" type="text" placeholder="Valor para la nueva variable..." v-model="varValue" @keypress.enter="setVar()">
         </div>
         <div class="control">

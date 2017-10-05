@@ -13,7 +13,8 @@ export default {
             Path: [],
             editing: {id: -1, value: '', blocked: false},
             varValue: '',
-            showBtnsIndex: -1
+            showBtnsIndex: -1,
+            isInputLoading: false,
         }
     },
     components: {OpenDialog},
@@ -36,13 +37,11 @@ export default {
         },
         addPath() {
             if(!this.varValue) return;
+            this.isInputLoading = true;
             this.Environment.addPath(this.varValue, err => {
-                if (err) {
-                    console.log(err);
-                    this.$emit('notificate', {type: 'is-danger', text: err});
-                    // return new Notification(err)
-                }
+                err && this.$emit('notificate', {type: 'is-danger', text: err});
                 this.varValue = '';
+                this.isInputLoading = false;
             })
         },
         delPath(index) {
