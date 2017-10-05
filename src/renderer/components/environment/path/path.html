@@ -5,7 +5,7 @@
             <input class="input is-hovered" type="text" placeholder="Nueva variable..." v-model="varValue" @keypress.enter="addPath()">
         </div>
         <div class="control">
-            <ti-btn-inverse icon="ti-check" :size="34" color="#22c65b" @click.native="addPath()"></ti-btn-inverse>
+            <ti-btn-inverse icon="ti-check" :size="30" color="#22c65b" @click.native="addPath()"></ti-btn-inverse>
             <open-dialog @selected-folder="selectedFolderByAdding"></open-dialog>
         </div>
     </div>
@@ -24,7 +24,7 @@
                         <input class="input is-small" type="text" placeholder="Nuevo valor..." v-model="editing.value" @keypress.enter="editPath(v, index)" @focus="$event.target.select()">
                     </div>
                     <div class="control">
-                        <ti-btn-inverse icon="ti-check" :size="14" color="#22c65b" @click.native="editPath(v, index)"></ti-btn-inverse>
+                        <ti-btn-inverse icon="ti-check" :size="20" color="#22c65b" @click.native="editPath(v, index)"></ti-btn-inverse>
                         <open-dialog :size="14" @selected-folder="selectedFolderByEditing"></open-dialog>
                         <ti-btn icon="ti-close" :size="14" @click.native="cancelEdit"></ti-btn>
                     </div>
