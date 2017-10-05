@@ -9,12 +9,12 @@
             <input class="input is-hovered" type="text" placeholder="Valor para la nueva variable..." v-model="varValue" @keypress.enter="setVar()">
         </div>
         <div class="control">
-            <ti-btn-inverse icon="ti-check" :size="34" color="#22c65b" @click.native="setVar()"></ti-btn-inverse>
+            <ti-btn-inverse icon="ti-check" :size="30" color="#22c65b" @click.native="setVar()"></ti-btn-inverse>
             <open-dialog @selected-folder="selectedFolderByAdding"></open-dialog>
         </div>
     </div>
     <div class="card">
-    <div v-for="(v, index) in Variables" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
+    <div v-for="(v, index) in Variables" :key="index" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
         <div v-if="editing.id !== index">
             <div style="float: right" v-show="showBtnsIndex==index  && !editing.blocked">
                 <ti-btn icon="ti-trash" :size="30" color="red" @click.native="delVar(v.name)"></ti-btn>
@@ -33,7 +33,7 @@
                     <input class="input is-hovered is-small" type="text" placeholder="Nuevo valor para la variable..." v-model="editing.value" @keypress.enter="editVar(v.name, v.value)" @focus="$event.target.select()">
                 </div>
                 <div class="control">
-                    <ti-btn-inverse icon="ti-check" :size="14" color="#22c65b" @click.native="editVar(v.name, v.value)"></ti-btn-inverse>
+                    <ti-btn-inverse icon="ti-check" :size="20" color="#22c65b" @click.native="editVar(v.name, v.value)"></ti-btn-inverse>
                     <open-dialog @selected-folder="selectedFolderByEditing" :size="14"></open-dialog>
                     <ti-btn icon="ti-close" :size="14" @click.native="cancelEdit"></ti-btn>
                 </div>

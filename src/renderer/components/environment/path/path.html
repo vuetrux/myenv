@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="card">
-        <div v-for="(v, index) in Path" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
+        <div v-for="(v, index) in Path" :key="index" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
             <div v-if="editing.id !== index">
                 <span>{{v}}</span>
                 <div style="float: right" v-show="showBtnsIndex==index && !editing.blocked">
