@@ -13,7 +13,9 @@
             </ul>
         </div>
         <div class="content">
-            <component :is="currentView" keep-alive @notificate="notificated"></component>
+            <transition name="fade">
+                <component :is="currentView" keep-alive @notificate="notificated"></component>
+            </transition>
         </div>
     </div>
 </template>
@@ -54,6 +56,14 @@
 </script>
 
 <style>
+    .fade-enter-to, .fade-leave {
+        transition: all .3s ease;
+    }
+    .fade-enter, .fade-leave-to {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+
     .card{
         background-color: whitesmoke;
     }
