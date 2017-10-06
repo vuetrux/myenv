@@ -7,6 +7,9 @@
 
 import OpenDialog from '../../buttons/OpenDialog.vue'
 import uxMixin from './uxMixin'
+import TiBtn from '../../buttons/TiBtn.vue'
+import TiBtnInverse from '../../buttons/TiBtnInverse.vue'
+import GreenLoader from '../../GreenLoader.vue'
 
 export default {
     mixins: [uxMixin],
@@ -17,7 +20,7 @@ export default {
             varValue: '',
         }
     },
-    components: {OpenDialog},
+    components: {TiBtn, TiBtnInverse, GreenLoader, OpenDialog},
     mounted() {
         this.Environment.getPath((err, path) => this.Path = path);
     },

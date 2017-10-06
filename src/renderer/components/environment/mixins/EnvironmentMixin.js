@@ -5,10 +5,13 @@
  * */
 import OpenDialog from '../../buttons/OpenDialog.vue'
 import uxMixin from './uxMixin'
+import TiBtn from '../../buttons/TiBtn.vue'
+import TiBtnInverse from '../../buttons/TiBtnInverse.vue'
+import GreenLoader from '../../GreenLoader.vue'
 
 export default {
     mixins: [uxMixin],
-    components: {OpenDialog},
+    components: {OpenDialog, TiBtn, TiBtnInverse, GreenLoader},
     mounted() {
         this.Environment.getVariables((err, Variables) => this.Variables = Variables);
     },

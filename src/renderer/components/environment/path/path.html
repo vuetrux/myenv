@@ -15,15 +15,11 @@
             <div v-if="editing.id !== index">
                 <div style="width: 100%;height: 100%;position: relative;top: 0;left: 0;background-color: #00a8c6"></div>
                 <span>{{v}}</span>
-                <template v-if="thisRowIsBusy===-1">
-                <div style="float: right" v-show="showBtnsIndex==index && !editing.blocked">
+                <div style="float: right" v-show="thisRowIsBusy===-1 && showBtnsIndex==index && !editing.blocked">
                     <ti-btn icon="ti-trash" color="red" @click.native="delPath(index)"></ti-btn>
                     <ti-btn icon="ti-pencil" @click.native="showEditor(index, v)"></ti-btn>
                 </div>
-                </template>
-                <template v-if="thisRowIsBusy==index">
-                    <img src="~@/assets/ajax-loader-green.gif" style="float: right">
-                </template>
+                <green-loader v-if="thisRowIsBusy==index"></green-loader>
             </div>
             <div v-else>
                 <div class="field is-grouped">
