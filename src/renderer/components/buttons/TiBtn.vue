@@ -21,6 +21,11 @@
     i:hover {
         border-radius: 20px;
         background-color: #bababa;
-        transition: all 0.1s ease-in;
+        transition: border-radius .2s ease;
+    }
+    i:active{
+        background-color: #777;
+        border-radius: 5px;
+        transition: all .5s ease;
     }
 </style>

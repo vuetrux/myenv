@@ -45,11 +45,11 @@ export default {
             })
         },
         delPath(index) {
-            this.isLoading = true;
+            this.thisRowIsBusy = index;
             this.Environment.delPath(index, err => {
                 // err && new Notification(err)
                 err && this.$emit('notificate', {type: 'is-danger', text: err});
-                this.isLoading = false;
+                this.thisRowIsBusy = -1;
             })
         },
         showEditor(index, varValue) {
@@ -65,11 +65,11 @@ export default {
         editPath(oldValue, index) {
             let valueChange = oldValue !== this.editing.value;
             if (valueChange) {
-                this.isLoading = true;
+                this.thisRowIsBusy = index;
                 this.Environment.editPath(this.editing.value, index, err => {
                     // err && new Notification(err)
                     err && this.$emit('notificate', {type: 'is-danger', text: err});
-                    this.isLoading = false;
+                    this.thisRowIsBusy = -1;
                 });
             }
             this.cancelEdit()

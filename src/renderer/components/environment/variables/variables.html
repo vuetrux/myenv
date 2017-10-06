@@ -16,16 +16,21 @@
     <div class="card">
     <div v-for="(v, index) in Variables" :key="index" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
         <div v-if="editing.id !== index">
+            <template v-if="thisRowIsBusy===-1">
             <div style="float: right" v-show="showBtnsIndex==index  && !editing.blocked">
                 <ti-btn icon="ti-trash" :size="30" color="red" @click.native="delVar(v.name)"></ti-btn>
                 <ti-btn icon="ti-pencil" :size="30" @click.native="showEditor(v, index)"></ti-btn>
             </div>
+            </template>
+            <template v-if="thisRowIsBusy==v.name">
+                <img src="~@/assets/ajax-loader-green.gif" style="float: right">
+            </template>
             <span class="subtitle">{{v.name}}</span> <br> <span>{{v.value}}</span>
         </div>
         <div v-else>
             <div class="field">
                 <div class="control is-expanded">
-                    <input class="input is-hovered is-small" type="text" placeholder="Nuevo nombre para la variable..." v-model="editing.name" @focus="$event.target.select()">
+                    <input class="input is-hovered is-small" type="text" placeholder="Nuevo nombre para la variable..." v-model="editing.name" @keypress.enter="editVar(v.name, v.value)" @focus="$event.target.select()">
                 </div>
             </div>
             <div class="field is-grouped">
@@ -33,14 +38,9 @@
                     <input class="input is-hovered is-small" type="text" placeholder="Nuevo valor para la variable..." v-model="editing.value" @keypress.enter="editVar(v.name, v.value)" @focus="$event.target.select()">
                 </div>
                 <div class="control">
-                    <template v-if="!isLoading">
                         <ti-btn-inverse icon="ti-check" :size="20" color="#22c65b" @click.native="editVar(v.name, v.value)"></ti-btn-inverse>
                         <open-dialog @selected-folder="selectedFolderByEditing" :size="14"></open-dialog>
                         <ti-btn icon="ti-close" :size="14" @click.native="cancelEdit"></ti-btn>
-                    </template>
-                    <template v-else>
-                        <img src="~@/assets/ajax-loader-green.gif">
-                    </template>
                 </div>
             </div>
         </div>

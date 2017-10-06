@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div class="content">
-            <transition name="fade">
+            <transition name="fade" appear mode="out-in">
                 <component :is="currentView" keep-alive @notificate="notificated"></component>
             </transition>
         </div>

@@ -3,7 +3,7 @@ export default {
         return {
             showBtnsIndex: -1,
             isInputLoading: false,
-            isLoading: false
+            thisRowIsBusy: -1
         }
     }
 }

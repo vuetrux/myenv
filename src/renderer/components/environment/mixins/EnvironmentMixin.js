@@ -21,24 +21,24 @@ export default {
         }
     },
     methods: {
-        setVar(varName, varValue, updateList = true) {
+        setVar(varName, varValue, addToList = true) {
             const newVarData = {
                 name: varName || this.varName,
                 value: varValue || this.varValue
             };
             if (!newVarData.name || !newVarData.value) return;
-            this.isInputLoading = true;
+            if (addToList) this.isInputLoading = true;
+            else this.thisRowIsBusy = varName;
             return new Promise((res, rej) => {
                 this.Environment.set(newVarData, (err, stdout, stderr) => {
+                    this.cleanInputs();
                     if (stderr || err) {
                         console.error(stderr);
                         this.$emit('notificate', {type: 'is-danger', text: stderr});
-                        this.cleanInputs();
                         return rej(stderr)
                     }
                     console.log(stdout);
-                    updateList && this.Variables.push(newVarData);
-                    this.cleanInputs();
+                    addToList && this.Variables.push(newVarData);
                     res()
                 })
             });
@@ -46,7 +46,9 @@ export default {
         delVar(varName, updateList = true) {
             // console.log('EnviromentsVariables.delVar.Enviroment.isSystem', this.Environment.isSystem);
             return new Promise((res, rej) => {
+                this.thisRowIsBusy = varName;
                 this.Environment.remove(varName, err => {
+                    this.thisRowIsBusy = -1;
                     if (err) {
                         // console.log('EnviromentsVariables.vue deleting', varName, err.message);
                         // new Notification(err.message);
@@ -87,6 +89,7 @@ export default {
             this.varValue = '';
             this.varName = '';
             this.isInputLoading = false;
+            this.thisRowIsBusy = -1;
         },
         editVar(oldName, oldValue) {
             let nameChanged = oldName !== this.editing.name;
