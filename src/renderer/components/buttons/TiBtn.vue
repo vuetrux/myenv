@@ -16,13 +16,14 @@
         cursor: pointer;
         padding: 5px;
         transition: all 0.5s ease-out;
+        transform: rotate(90grad);
     }
 
     i:hover {
         border-radius: 20px;
         background-color: #bababa;
-        transition: border-radius .2s ease;
     }
+
     i:active{
         background-color: #777;
         border-radius: 5px;
