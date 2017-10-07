@@ -1,10 +1,7 @@
 import Vue from 'vue'
-// import Vuetify from 'vuetify'
 import App from './App.vue'
-import store from './store'
-// import '../../node_modules/vuetify/dist/vuetify.min.css'
-// Vue.use(Vuetify);
 import '../../node_modules/bulma/css/bulma.css'
+// import '../../static/animate.min.css'
 
 if (!process.env.IS_WEB) {
   Vue.use(require('vue-electron'));
@@ -19,6 +16,5 @@ Vue.config.productionTip = false;
 /* eslint-disable no-new */
 new Vue({
   components: { App },
-  store,
   template: '<App/>'
 }).$mount('#app');

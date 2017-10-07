@@ -58,6 +58,7 @@
 <style>
     .fade-enter-to, .fade-leave {
         transition: all .3s ease;
+        opacity: 0.7;
     }
     .fade-enter, .fade-leave-to {
         transform: translateX(100px);

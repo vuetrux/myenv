@@ -10,7 +10,9 @@
         </div>
     </div>
     <div class="card">
-        <!--<transition-group name="list" tag="p">-->
+        <!--<transition-group tag="p" name="custom-classes-transition"-->
+                          <!--enter-active-class="animated slideInDown"-->
+                          <!--leave-active-class="animated slideOutUp">-->
         <div v-for="(v, index) in Path" :key="index" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
             <div v-if="editing.id !== index">
                 <div style="width: 100%;height: 100%;position: relative;top: 0;left: 0;background-color: #00a8c6"></div>
