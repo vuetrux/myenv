@@ -16,7 +16,7 @@
         cursor: pointer;
         padding: 5px;
         transition: all 0.5s ease-out;
-        transform: rotate(90grad);
+        border-radius: 5px;
     }
 
     i:hover {

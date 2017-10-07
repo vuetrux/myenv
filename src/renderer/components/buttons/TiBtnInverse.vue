@@ -34,11 +34,18 @@
         cursor: pointer;
         padding: 5px;
         transition: all 0.5s ease-out;
+        border-radius: 5px;
     }
 
     i:hover {
         border-radius: 20px;
+        padding: 0;
+        font-weight: bold;
         background-color: #bababa;
-        transition: all 0.1s ease-in;
+        transition: padding .5s ease;
+    }
+
+    i:active {
+        padding: 5px;
     }
 </style>
