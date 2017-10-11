@@ -79,11 +79,11 @@
         list-style: none;
     }
 
-    .content div.card > div:hover {
+    .content div.card div.company:hover {
         background-color: rgba(0, 209, 178, 0.09);
     }
 
-    .content ul li, div.card > div {
+    .content ul li, div.card div.company {
         padding: 5px;
         /*border: 1px solid blue;*/
         /*border-bottom: 1px solid whitesmoke;*/
@@ -98,3 +98,5 @@
     }
 
 </style>
+
+<style src="../../static/company-list-animation.css"></style>

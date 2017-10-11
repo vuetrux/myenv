@@ -14,7 +14,9 @@
         </div>
     </div>
     <div class="card">
-    <div v-for="(v, index) in Variables" :key="index" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
+    <transition-group name="company" class="div">
+
+        <div class="company" v-for="(v, index) in Variables" :key="index" @mouseover="showBtnsIndex=index" @mouseleave="showBtnsIndex=-1">
         <div v-if="editing.id !== index">
             <div style="float: right" v-show="thisRowIsBusy===-1 && showBtnsIndex==index  && !editing.blocked">
                 <ti-btn icon="ti-trash" :size="30" color="red" @click.native="delVar(v.name)"></ti-btn>
@@ -41,5 +43,6 @@
             </div>
         </div>
     </div>
+    </transition-group>
     </div>
 </div>
